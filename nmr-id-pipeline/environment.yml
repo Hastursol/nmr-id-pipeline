@@ -1,0 +1,19 @@
+name: nmrid
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - scipy
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - pyyaml
+  - joblib
+  - tqdm
+  - rdkit
+  - pytest
+  - pip
+  - pip:
+      - torch
+      - nmrglue

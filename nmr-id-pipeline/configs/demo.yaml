@@ -1,0 +1,27 @@
+# Synthetic smoke test: runs every experiment end to end in minutes on a laptop.
+# The numbers it produces only show that the code works - they are not results.
+run_name: demo_synthetic
+seed: 0
+
+data:
+  source: synthetic
+  n_compounds: 60
+  replicates: 20
+
+rf:
+  n_estimators: 100
+
+cnn:
+  epochs: 6
+  patience: 3
+  min_batches_per_epoch: 20
+
+siamese:
+  epochs: 6
+  patience: 3
+  min_batches_per_epoch: 20
+
+experiments:
+  seeds: [0]
+  train_fractions: [0.10, 0.50, 1.00]
+  shift_ppm: [-0.04, -0.02, 0.0, 0.02, 0.04]

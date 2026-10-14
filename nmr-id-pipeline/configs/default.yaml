@@ -1,0 +1,56 @@
+# Full thesis run on nmrshiftdb2.  Only values that differ from nmrid/config.py
+# need to be listed; everything is shown here so the settings are easy to find.
+run_name: nmrshiftdb2_k1000
+seed: 0
+device: auto
+
+paths:
+  sdf: data/raw/nmrshiftdb2withsignals.sd
+  processed: data/processed
+  results: results
+
+data:
+  source: nmrshiftdb2
+  n_compounds: 1000          # K classes; start with 500 to check timings
+  min_peaks: 2
+  prefer_multi_spectra: true
+  replicates: 20             # 14 train / 3 val / 3 test per compound
+  split: [0.70, 0.15, 0.15]
+  include_reference_in_train: true
+
+grid:
+  ppm_min: 0.0
+  ppm_max: 12.0
+  n_bins: 2000
+  hwhm_ppm: 0.012
+  larmor_mhz: 400.0
+
+rf:
+  n_estimators: 500
+  max_depth: 30
+  n_jobs: -1
+
+encoder:
+  channels: [32, 64, 128, 256]
+  kernels: [7, 5, 3, 3]
+  pool_bins: 16
+  bottleneck: 32
+  embed_dim: 256
+
+cnn:
+  epochs: 50
+  patience: 8
+  lr: 0.001
+  batch_size: 64
+
+siamese:
+  shared_weights: true
+  loss: bce
+  epochs: 40
+  patience: 8
+
+experiments:
+  seeds: [0]                 # [0, 1, 2] for the final RQ1 table
+  noise_levels: [0.0, 0.01, 0.02, 0.05, 0.10]
+  train_fractions: [0.10, 0.25, 0.50, 0.75, 1.00]
+  models: [cosine, rf, cnn, siamese]
