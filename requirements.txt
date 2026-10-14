@@ -1,0 +1,14 @@
+# CPU is enough for this project.  For an NVIDIA GPU, install torch first following
+# https://pytorch.org/get-started/locally/ and then install the rest of this file.
+numpy>=1.23
+scipy>=1.9
+pandas>=1.5
+scikit-learn>=1.2
+matplotlib>=3.6
+torch>=2.0
+nmrglue>=0.9
+rdkit>=2023.3
+pyyaml>=6.0
+joblib>=1.2
+tqdm>=4.64
+pytest>=7
